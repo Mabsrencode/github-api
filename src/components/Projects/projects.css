@@ -1,0 +1,13 @@
+.repos-list > .details:has(p, a){
+    color: white;
+}
+.details:has(p, a){
+        opacity: 0.5;
+        font-size: 0.8rem;
+}
+.pubDate{
+    margin-top: 1rem;
+}
+.prod-url{
+    text-decoration: underline;
+}

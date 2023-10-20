@@ -80,7 +80,7 @@ function GitHubProfile() {
         fetchUserProfile();
         fetchUserRepos();
         fetchLatestCommits();
-    }, [repos]);
+    }, [repos]); //! data loop
 
     return (
         <div className="">

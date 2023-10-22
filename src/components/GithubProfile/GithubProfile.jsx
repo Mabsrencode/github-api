@@ -15,72 +15,60 @@ function GitHubProfile() {
     const [commits, setCommits] = useState([]);
     const username = 'mabsrencode';
     const accessToken = "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";
-
     useEffect(() => {
-        const fetchUserProfile = async () => {
+        const fetchData = async () => {
+            let reposData = [];
             try {
-                const response = await fetch(`https://api.github.com/users/${username}`, {
+                const profileResponse = await fetch(`https://api.github.com/users/${username}`, {
                     headers: {
                         Authorization: `token ${accessToken}`,
                     },
                 });
-                if (response.ok) {
-                    const userData = await response.json();
+                if (profileResponse.ok) {
+                    const userData = await profileResponse.json();
                     setUser(userData);
                 } else {
-                    console.error('Error fetching user profile:', response.status);
+                    console.error('Error fetching user profile:', profileResponse.status);
                 }
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-            }
-        };
-
-        const fetchUserRepos = async () => {
-            try {
-                const response = await fetch(`https://api.github.com/users/${username}/repos`, {
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`, {
                     headers: {
                         Authorization: `token ${accessToken}`,
                     },
                 });
-                if (response.ok) {
-                    const reposData = await response.json();
+                if (reposResponse.ok) {
+                    reposData = await reposResponse.json();
                     setRepos(reposData);
                 } else {
-                    console.error('Error fetching user repositories:', response.status);
+                    console.error('Error fetching user repositories:', reposResponse.status);
                 }
+                const commitsData = [];
+
+                await Promise.all(reposData.map(async (repo) => {
+                    try {
+                        const commitResponse = await fetch(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=2`, {
+                            headers: {
+                                Authorization: `token ${accessToken}`,
+                            },
+                        });
+                        if (commitResponse.ok) {
+                            const repoCommits = await commitResponse.json();
+                            commitsData.push(...repoCommits);
+                        } else {
+                            console.error(`Error fetching commits for ${repo.name}:`, commitResponse.status);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching commits for ${repo.name}:`, error);
+                    }
+                }));
+
+                setCommits(commitsData);
             } catch (error) {
-                console.error('Error fetching user repositories:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
-        const fetchLatestCommits = async () => {
-            const commitsData = [];
-
-            await Promise.all(repos.map(async (repo) => {
-                try {
-                    const response = await fetch(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=2`, {
-                        headers: {
-                            Authorization: `token ${accessToken}`,
-                        },
-                    });
-                    if (response.ok) {
-                        const repoCommits = await response.json();
-                        commitsData.push(...repoCommits);
-                    } else {
-                        console.error(`Error fetching commits for ${repo.name}:`, response.status);
-                    }
-                } catch (error) {
-                    console.error(`Error fetching commits for ${repo.name}:`, error);
-                }
-            }));
-
-            setCommits(commitsData);
-        };
-
-        fetchUserProfile();
-        fetchUserRepos();
-        fetchLatestCommits();
-    }, []);
+        fetchData();
+    }, [username, accessToken]);
 
     return (
         <div className="">

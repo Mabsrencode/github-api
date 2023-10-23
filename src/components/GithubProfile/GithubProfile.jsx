@@ -14,7 +14,8 @@ function GitHubProfile() {
     const [repos, setRepos] = useState([]);
     const [commits, setCommits] = useState([]);
     const username = 'mabsrencode';
-    const accessToken = "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";
+    const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
+
     useEffect(() => {
         const fetchData = async () => {
             let reposData = [];

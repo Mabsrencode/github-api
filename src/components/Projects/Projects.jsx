@@ -70,7 +70,6 @@ const Projects = (props) => {
                             <p>Name: {site.name}</p>
                             <a href={site.url} target='_blank' rel="noreferrer" className='prod-url'><p>URL: {site.url}</p></a>
                             <p className='pubDate'>Published date: {site.dateCreated}</p>
-                            <p><span></span>{props.language}</p>
                         </div>
                     </li>
                 ))}

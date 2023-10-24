@@ -60,7 +60,7 @@ const Projects = (props) => {
 
     return (
         <div>
-            <h2 className='max-w-md text-center text-2xl py-4 px-6 m-12 bg-gray text-white rounded sm:text-6xl'>Repository</h2>
+            <h2 className='text-center text-2xl py-4 px-6 my-12 bg-gray text-white rounded sm:text-6xl'>Repository</h2>
             <ul className='flex flex-wrap'>
                 {siteInfo.map((site) => (
                     <li className='repos-list container mx-auto max-w-3xl mb-20 bg-gray rounded border border-white p-6 shadow-inner' key={site.siteId}>

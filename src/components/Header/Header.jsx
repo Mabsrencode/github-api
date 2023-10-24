@@ -28,16 +28,6 @@ function NavList() {
 
                 className="p-1 font-medium text-slate-300"
             >
-                <Link to="/contact" className="flex items-center hover:bg-gray py-2 px-3 rounded transition-colors">
-                    Contact
-                </Link>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-
-                className="p-1 font-medium text-slate-300"
-            >
                 <Link to="https://www.mabsrencode.com" target='_blank' className="flex items-center hover:bg-gray py-2 px-3 rounded transition-colors">
                     Official Website
                 </Link>

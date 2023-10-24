@@ -98,6 +98,8 @@ function GitHubProfile() {
                             <h2 className='text-md opacity-50'>Name: {user.name}</h2>
                             <h2 className='text-md opacity-50'>Followers: {user.followers}</h2>
                             <h2 className='text-md opacity-50'>Following: {user.following}</h2>
+                            <h2 className='text-md opacity-50'>Private Repository: {user.owned_private_repos}</h2>
+                            <h2 className='text-md opacity-50'>Public Repository: {user.public_repos}</h2>
                             <p className='text-xs opacity-50 mt-4'>{user.bio}</p>
                         </div>
                         <div className='grow border border-white p-4 rounded text-white'>

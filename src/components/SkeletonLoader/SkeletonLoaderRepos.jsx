@@ -5,7 +5,7 @@ const SkeletonLoader = () => {
     return (
         <div className='flex flex-wrap justify-center items-center gap-20 mb-24 '>
             {Array.from({ length: numStacks }, (_, index) => (
-                <Skeleton className='mx-10 rounded' key={index}
+                <Skeleton className=' rounded' key={index}
                     sx={{ bgcolor: 'grey.600' }}
                     variant="rectangular"
                     width={768}

@@ -88,8 +88,8 @@ function GitHubProfile() {
         <div className="">
             {isLoading ? (<SkeletonLoader />) : (<div>
                 {user && (
-                    <div className='flex gap-2 justify-center flex-wrap p-2 bg-gray rounded'>
-                        <div className="bg-gray grow rounded border border-white p-4 text-white shadow-xl shadow-inner">
+                    <div className='flex gap-2 justify-center w-full flex-wrap p-2 bg-gray rounded'>
+                        <div className="bg-gray grow rounded border lg:max-w-[30%] border-white p-4 text-white shadow-xl shadow-inner">
                             <div className='flex items-center gap-4'>
                                 <img src={user.avatar_url} alt="avatar" className='h-14 w-14 rounded-full' />
                                 <h1 className='text-4xl'>Profile Status</h1>
@@ -130,7 +130,7 @@ function GitHubProfile() {
                         </div>
                         <div className='grow  border border-white p-4 rounded  text-white'>
                             <h1 className='text-4xl'>Repository Lists</h1>
-                            <ul className='mt-4'>
+                            <ul className='h-[290px] overflow-y-scroll  mt-4'>
                                 {repos.map((repo) => (
                                     <li key={repo.id} className='list-disc ml-8 opacity-50'>{repo.name}</li>
                                 ))}
